@@ -1,17 +1,33 @@
 
-f = open("day-1/puzzle-input.txt")
-lines = readlines(f)
+module Day1
 
-int_array = [parse(Int, x) for x in lines]
+    export parse_file, calc_increase, calc_increase_window
 
-# part 1
-diff_array = append!(int_array[2:end], int_array[end]) .- int_array
+    function parse_file(filename)
+        f = open(filename)
+        lines = readlines(f)
+        
+        return [parse(Int, x) for x in lines]
+    end
+            
+    # part 1
+    function calc_increase(int_array)
+        diff_array = append!(int_array[2:end], int_array[end]) .- int_array
 
-inc_count = sum(diff_array .> 0)
-println("Number of increases: ", inc_count)
+        return sum(diff_array .> 0)
+    end
 
-# part 2
-window_array = int_array[1:end-2] .+ int_array[2:end-1] .+ int_array[3:end]
-window_diff_array = append!(window_array[2:end], window_array[end]) .- window_array
-inc_count = sum(window_diff_array .> 0)
-println("Number of increases: ", inc_count)
+    # part 2 
+    function calc_increase_window(int_array)
+        window_array = int_array[1:end-2] .+ int_array[2:end-1] .+ int_array[3:end]
+        window_diff_array = append!(window_array[2:end], window_array[end]) .- window_array
+        return sum(window_diff_array .> 0)
+    end
+end
+
+int_array = Day1.parse_file("day-1/puzzle-input.txt")
+inc_count = Day1.calc_increase(int_array)
+println("Part 1 - Number of increases: ", inc_count)
+
+window_inc_count = Day1.calc_increase_window(int_array)
+println("Par 2 - Number of window increases: ", window_inc_count)

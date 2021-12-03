@@ -40,10 +40,10 @@ module Day2
 end
 
 
-dir_array = parse_file("day-2/puzzle-input.txt")
+dir_array = Day2.parse_file("day-2/puzzle-input.txt")
 
-(horizontal_position, depth) = calc_position_depth(dir_array)
+(horizontal_position, depth) = Day2.calc_position_depth(dir_array)
 print("Part1 - Depth x Horizonal Position: ", horizontal_position*depth)
 
-(horizontal_position, aim, depth) = calc_position_aim_depth(dir_array)
-print("Part 2 - Depth x Horizonal Position: ", horizontal_position*depth)
+(horizontal_position, aim, depth) = Day2.calc_position_aim_depth(dir_array)
+print("\nPart 2 - Depth x Horizonal Position: ", horizontal_position*depth)
