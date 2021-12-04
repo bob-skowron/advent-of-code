@@ -14,4 +14,5 @@ bin_matrix = Day3.parse_file("day-3/tests/test-input.txt")
 
     @test Day3.calc_gamma_epsilon(bin_matrix) == (22, 9)
 
+    @test Day3.calc_oxy_co2(bin_matrix) == (23, 10)
 end
