@@ -1,3 +1,5 @@
+using LinearAlgebra
+
 module Day4
 
     export parse_file, calc_position_depth, calc_position_aim_depth
@@ -20,6 +22,31 @@ module Day4
     # part 1
     function calc_boards(called_numbers, boards)
 
+        marked_boards = boards * 0 # initialize marked_boards to 0        
+        winning_board = Any
+        winning_call = Any
+
+        for c in called_numbers
+            println(c)
+            for b_i = 1:size(boards)[1]
+                board = boards[b_i]
+                marked_boards[b_i][board .== c] .= 1
+
+                b = marked_boards[b_i]
+
+                if (
+                    maximum(sum(b, dims=1)) == 5 || # column sums
+                    maximum(sum(b, dims=2)) == 5 # row sums
+                )
+                    winning_call = c
+
+                    winning_board = board
+                    unmarked_sum = sum(winning_board .* (1 .- b))
+                    
+                    return (winning_call, unmarked_sum)
+                end
+            end
+        end        
     end
 
     # part 2
@@ -27,4 +54,6 @@ module Day4
 end
 
 
-(called_numbers, boards) = parse_file("day-4/tests/test-input.txt")
+(called_numbers, boards) = parse_file("day-4/puzzle-input.txt")
+(winning_call, unmarked_sum) = calc_boards(called_numbers, boards)
+println("Part 1 - winning_call * unmarked_sum: ", winning_call * unmarked_sum)

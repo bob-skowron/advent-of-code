@@ -30,7 +30,7 @@ using .Day4
         ]
     ]
 
-#     @test Day2.calc_position_depth(dir_array) == (15, 10)
+     @test Day4.calc_boards(dir_array) == (24, 188)
 
 #     @test Day2.calc_position_aim_depth(dir_array) == (15, 10, 60)
 end
