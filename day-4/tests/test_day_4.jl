@@ -30,7 +30,7 @@ using .Day4
         ]
     ]
 
-     @test Day4.calc_boards(dir_array) == (24, 188)
+     @test Day4.calc_boards(called_numbers, boards) == (24, 188)
 
-#     @test Day2.calc_position_aim_depth(dir_array) == (15, 10, 60)
+     @test Day4.calc_last_board(called_numbers, boards) == (13, 148)
 end
